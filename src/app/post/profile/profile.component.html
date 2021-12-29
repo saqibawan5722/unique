@@ -1,0 +1,42 @@
+
+<div class="container" style="width: 400px; border: 2px solid black; padding: 30px; margin-top: 30px;">
+<form [formGroup]="Form" (ngSubmit)="onSubmit()">
+    <div class="row" style="margin-bottom: 20px;">
+        <h3 style="width: 110px;">Profile</h3>
+        <button routerLink="/post/profile" [queryParams]="{Editmode:true}" class="btn btn-success" type="button" style="width: 130px; margin-left: 120px;">
+            Edit profile</button>
+    </div>
+     <hr>
+     
+       <div>  EditMode:
+             <span style="background-color: burlywood; border: 2px solid burlywood; border-radius: 10px; padding: 3px;">
+                {{Editmode}}
+            </span>
+      </div>
+
+     <hr>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">{{ Editmode? 'Enter' :''}}  Name</label>
+      <span class="value" *ngIf="!Editmode">  Saqib</span>
+      <input *ngIf="Editmode" type="text" class="form-control" id="exampleInputEmail1"  formControlName="name">
+      <div *ngIf="Form.controls['name'].invalid && Form.controls['name'].touched">
+        <span class="name" style="margin-left: 120px; color: brown;">Please Enter Name</span>                
+        </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label"> {{ Editmode? 'Enter' :''}} PhotoUrl</label>
+      <span class="value" *ngIf="!Editmode">  Awan</span>
+      <input *ngIf="Editmode" type="password" class="form-control" id="exampleInputPassword1" formControlName="photoUrl">
+      <div *ngIf="Form.controls['photoUrl'].invalid && Form.controls['photoUrl'].touched">
+        <span class="name" style="margin-left: 120px; color: brown;">Add Photo-Url</span>                
+        </div>
+    </div>
+
+    <div class="btn-row" *ngIf="Editmode">
+        <button type="submit" class="btn btn-success my">Submit</button>
+         <button type="button" class="btn btn-success my" (click)="ondiscard()">Discard</button>
+    </div>
+
+  </form>
+</div>

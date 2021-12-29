@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki;">
+                
+                  <p class="navbar-brand" style="margin-left: 550px; font-size: 23px;"><b>Forget-Password</b></p>
+                
+              </nav>  
+              <div class="saqi" style="height: 300px;">
+              <div style="margin-top: 40px; border: 2px solid cadetblue; width: 300px; padding: 30px; background-color: darkkhaki;">
+              <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label"><b>Email address</b></label>
+                  <input type="email" class="form-control" style="border:2px solid darkred;" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+                </div>
+                
+                <div style="color:black; font-size: 18px;text-align: center">
+                    back to login?<span style="cursor: pointer;font-weight: 500; font-size: 18px;"
+                   (click)="onback()"> Click here</span>
+                </div>
+
+                <button type="submit" class="btn btn-success mt-3" style="margin-left: 80px;">Send</button>
+              </form>
+
+            
+           
+              </div>
+              <div>
+        </div>
+    </div>
+</div>
+
+

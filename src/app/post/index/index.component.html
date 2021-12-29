@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Angular CRUD Example</h1>
+    <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki;">
+        <div class="container-fluid">
+          <h3 class="navbar-brand">Wellcome</h3>
+          <div class="dropdown">
+              <a href="" data-bs-toggle="dropdown" style="padding-right: 10px;"> <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle"></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button routerLink="/post/index" class="dropdown-item" type="button">Dashboard</button></li>
+              <!-- <li><a routerLink="/post/profile"> <i class="fa fa-eye"></i> View Profile </a></li> -->
+              <li><button routerLink="/post/profile" class="dropdown-item" type="button">View Profile</button></li>
+              <li><button routerLink="/post/profile" class="dropdown-item" [queryParams]="{EditMode:true}" type="button">Edit Profile</button></li>
+              <li><button routerLink="/post/changepassword" class="dropdown-item" type="button">Change Password</button></li>
+             <li><button class="dropdown-item" type="button" (click)="sginout()">Sign Out</button></li> 
+            </ul>
+          </div>
+        </div>
+      </nav> 
+  
+    <a href="#" routerLink="/post/create" class="btn btn-success saqi">Create New Post</a>
+    
+    <table class="table table-bordered">
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th >Action</th>
+      </tr>
+       <tr *ngFor="let post of posts; index as i">
+        <td> {{i+1}} </td>
+        <td> {{ post.title }} </td>
+        <td> {{ post.body }} </td>
+        <td>
+          <a  [routerLink]="['/post/', post.userId, 'view']" class="btn btn-outline-success btnn">View</a> 
+          <a  [routerLink]="['/post/', post.userId, 'edit']" class="btn btn-outline-success btnn">Edit</a>   
+         <button type="button" (click)="deletePost(post.userId)" class="btn btn-outline-success btnn">Delete</button> 
+        </td>
+      </tr> 
+    </table>
+ </div>

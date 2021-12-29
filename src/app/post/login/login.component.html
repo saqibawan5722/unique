@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki;">
+                <div class="container-fluid">
+                  <h3 class="navbar-brand">Wellcome</h3>
+                  <div>        
+                     
+                      <button class="btn btn-success" type="submit">Sign In</button>   
+                  </div>
+                </div>
+              </nav> 
+              <div *ngIf="error" class="alert alert-danger" style="width: 400px; text-align: center; margin-left: 450px;" role="alert">
+                <b>Error:</b> {{error}}
+              </div>
+              <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+              <div class="saqi">
+              <div style="margin-top: 40px; border: 2px solid cadetblue; width: 300px; padding: 20px; background-color: darkkhaki;">
+              
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" style="border:2px solid darkred;" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+                  <div *ngIf="Form.controls['email'].invalid && Form.controls['email'].touched">
+                    <span class="name" style="margin-left: 80px;">Enter email</span>                
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" style="border:2px solid darkred;" id="exampleInputPassword1" formControlName="password">
+                  <div *ngIf="Form.controls['password'].invalid && Form.controls['password'].touched">
+                    <span class="name" style="margin-left: 80px;">Enter password</span>                
+                    </div>
+                </div>
+
+                <div style="color:black; font-size: 18px;text-align: center">
+                  {{loginMode? 'Forget password?' : '' }}<span style="cursor: pointer;font-weight: 500; font-size: 18px;"
+                  (click)="onforget()" >{{loginMode? 'Click Here' : '' }}</span>
+                </div>
+                <button type="submit" class="btn btn-success" [disabled]= !Form.valid>{{loginMode? 'Sign In' : ' Create Acoount' }}</button>
+              
+
+            <div style="color:black; font-size: 18px;text-align: center">
+                {{loginMode? 'Don`t account?' : 'Already have account' }}<span style="cursor: pointer;font-weight: 500; font-size: 18px;"
+                (click)="logMode()">{{loginMode? 'Create One' : ': Sgin In' }}</span>
+            </div>
+           
+              </div>
+    
+        
+    </div>
+</form>
+</div>
+
