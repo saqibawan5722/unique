@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthserviceService } from '../authservice.service';
 import { MyserviceService } from '../myservice.service';
 import { Post } from '../post';
+import { CdkDragDrop , moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-index',
@@ -47,4 +48,15 @@ export class IndexComponent implements OnInit {
    sginout(){
      this.service.SginOut()
    }
+
+   onDrop(event : CdkDragDrop<string[]>){
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+       
+      );
+    
+     
+  }
 }

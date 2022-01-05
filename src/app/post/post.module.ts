@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { DragDropModule } from '@angular/cdk/drag-drop'
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { ProfileComponent } from './profile/profile.component';
     CommonModule,
     PostRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
    
 ],
 //  providers:[

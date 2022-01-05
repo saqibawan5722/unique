@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostModule } from './post/post.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PostModule } from './post/post.module';
     AppRoutingModule,
     PostModule,
     HttpClientModule,
+    BrowserAnimationsModule,
    
   ],
   providers: [],

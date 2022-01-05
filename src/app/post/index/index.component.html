@@ -20,21 +20,29 @@
     <a href="#" routerLink="/post/create" class="btn btn-success saqi">Create New Post</a>
     
     <table class="table table-bordered">
+    <thead>
       <tr>
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th >Action</th>
       </tr>
-       <tr *ngFor="let post of posts; index as i">
-        <td> {{i+1}} </td>
-        <td> {{ post.title }} </td>
-        <td> {{ post.body }} </td>
-        <td>
-          <a  [routerLink]="['/post/', post.userId, 'view']" class="btn btn-outline-success btnn">View</a> 
+    </thead>
+    <tbody cdkDropList
+           (cdkDropListDropped)="onDrop($event)"
+           [cdkDropListData]="posts">
+       <tr cdkDrag
+           cdkDragLockAxis="y"
+           *ngFor="let post of posts; index as i">
+          <td cdkDragHandle> {{i+1}}  </td>
+          <td> {{ post.firstname }} </td>
+          <td> {{ post.lastname }} </td>
+          <td>
+          <a  [routerLink]="['/post/', post.userId, 'view']" class="btn btn-success btnn">View</a> 
           <a  [routerLink]="['/post/', post.userId, 'edit']" class="btn btn-outline-success btnn">Edit</a>   
-         <button type="button" (click)="deletePost(post.userId)" class="btn btn-outline-success btnn">Delete</button> 
+         <button type="button" (click)="deletePost(post.userId)" class="btn btn-success btnn">Delete</button> 
         </td>
-      </tr> 
+      </tr>
+    </tbody> 
     </table>
  </div>

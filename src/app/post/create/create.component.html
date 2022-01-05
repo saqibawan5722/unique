@@ -1,11 +1,16 @@
 <div class="container">
-    <h1>Create New Post</h1>
-  
-    <a href="#" routerLink="/post/index" class="btn btn-primary">Back</a>
+  <div class="row">
+    <div class="col">
+        <h1 style=" background-color: darkkhaki; border: 2px solid black; padding: 8px; text-align: center;">Create New Account</h1>
         
-    <form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="heading" style="border:2px solid black; background-color: darkkhaki;">
+   <div class="row">
+   <div class="col">
+    <a href="#" routerLink="/post/index" class="btn btn-success" style="margin-left: 400px;">Back</a>
+ 
+    <form [formGroup]="form" (ngSubmit)="submit()" style="width: 400px; margin-left: 30px;">
 
-        <!-- <div class="form-group">
+         <!-- <div class="form-group">
             <label for="title">ID</label>
             <input 
                 formControlName="id"
@@ -15,33 +20,38 @@
             <div *ngIf="f.title.touched && f.title.invalid" class="alert alert-danger">
                 <div *ngIf="f.title.errors.required">Title is required.</div>
             </div>
-        </div>
-   -->
-        <div class="form-group">
-            <label for="title">Title:</label>
+        </div> -->
+   
+        <div class="mb-3">
+            <label class="form-label" for="title" >First Name:</label>
             <input 
-                formControlName="title"
+                formControlName="firstname"
                 id="title" 
                 type="text" 
-                class="form-control">
-            <div *ngIf="f.title.touched && f.title.invalid" class="alert alert-danger">
-                <div *ngIf="f.title.errors.required">Title is required.</div>
+                class="form-control"
+                style="border:2px solid darkred;">
+            <div *ngIf="f.firstname.touched && f.firstname.invalid" class="alert alert-success">
+                <div *ngIf="f.firstname.errors.required">Title is required.</div>
             </div>
         </div>
   
-        <div class="form-group">
-            <label for="body">Body</label>
-            <textarea 
-                formControlName="body"
+        <div class="mb-3">
+            <label class="form-label" for="body">Last Name:</label>
+            <input 
+                formControlName="lastname"
                 id="body" 
                 type="text" 
-                class="form-control">
-            </textarea>
-            <div *ngIf="f.body.touched && f.body.invalid" class="alert alert-danger">
-                <div *ngIf="f.body.errors.required">Body is required.</div>
+                class="form-control"
+                style="border:2px solid darkred;">
+            <div *ngIf="f.lastname.touched && f.lastname.invalid" class="alert alert-success">
+                <div *ngIf="f.lastname.errors.required">Body is required.</div>
             </div>
         </div>
   
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
     </form>
+  </div>
+    </div>
+    </div>
+    </div>  
 </div>
