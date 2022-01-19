@@ -4,6 +4,7 @@ import { AuthserviceService } from '../authservice.service';
 import { MyserviceService } from '../myservice.service';
 import { Post } from '../post';
 import { CdkDragDrop , moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { PaginationService } from 'ngx-pagination';
 
 @Component({
   selector: 'app-index',
@@ -12,18 +13,57 @@ import { CdkDragDrop , moveItemInArray, transferArrayItem } from '@angular/cdk/d
 })
 export class IndexComponent implements OnInit {
 
+  totalLength:any;
+   public maxSize: number = 3;
+   page : number = 1;
+  // public directionLinks: boolean = true;
+  perPage : number = 5;
+  totalPages: number;
+  currentPage:any = 1;
+  pages: any;
+  count:any;
+  index: any = 1;
   posts = [];
-  post: Post; 
+  post: Post;
+  no_data = false;
+  
+  firstname:any;
 
-  constructor(private postService:MyserviceService, private service:AuthserviceService) { }
+  constructor(private postService:MyserviceService, private service:AuthserviceService ) { }
 
   ngOnInit(): void {
+  
     this.postService.getAll().subscribe( 
+
       (Response) =>{
          console.log(Response);
          this.posts = Response;
-    })   
+         this.totalLength = Response.length;
+
+         this.onCheck();
+    });  
+
   }
+
+  onCheck(){
+    if(this.totalLength <= 0)
+    {
+      this.no_data = true;
+    }
+    else{
+      this.no_data = false;
+    } 
+  }
+
+  //  this for pagination
+
+  // setPage(pageDate:any){
+  //   this.currentPage = pageDate.page;
+  //   this.perPage = pageDate.perPage;
+  //   this.index = this.currentPage;
+  //   this.ngOnInit();
+  // }
+
 
 
   deletePost(id) {
@@ -49,14 +89,26 @@ export class IndexComponent implements OnInit {
      this.service.SginOut()
    }
 
+
+   //  this is for drag and drop
    onDrop(event : CdkDragDrop<string[]>){
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex,
        
-      );
-    
-     
+      );   
   }
+
+
+  search(){
+    if(this.firstname == ""){
+      this.ngOnInit();
+    }else{
+      this.posts = this.posts.filter(res => {
+        return res.firstname.toLocaleLowerCase().match(this.firstname.toLocaleLowerCase());
+      })
+    }
+  }
+  
 }

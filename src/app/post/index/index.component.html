@@ -4,7 +4,7 @@
         <div class="container-fluid">
           <h3 class="navbar-brand">Wellcome</h3>
           <div class="dropdown">
-              <a href="" data-bs-toggle="dropdown" style="padding-right: 10px;"> <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle"></a>
+              <a href="" data-bs-toggle="dropdown" style="padding-right: 10px;"> <i class="fas fa-user-circle" style="font-size: 40px; color: aliceblue;"></i></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <li><button routerLink="/post/index" class="dropdown-item" type="button">Dashboard</button></li>
               <!-- <li><a routerLink="/post/profile"> <i class="fa fa-eye"></i> View Profile </a></li> -->
@@ -17,26 +17,45 @@
         </div>
       </nav> 
   
-    <a href="#" routerLink="/post/create" class="btn btn-success saqi">Create New Post</a>
+      <!-- for search  and create button -->
+     <div class="search">
+
+        <a class="search1">
+              <label for="class" style="font-size: 22px; color: black;">Search Module: </label>
+              <input id="class" type="search" placeholder="Search..." 
+                     [(ngModel)]="firstname" (ngModelChange)="search()" style="outline: none;">
+              <!-- <button type="submit"><i class="fa fa-search"> </i></button> -->
+        </a>
+
+              <a href="#" routerLink="/post/create" class="btn btn-success">Create New User</a>
+     </div>
     
-    <table class="table table-bordered">
-    <thead>
+
+    
+    <table class="table table-bordered ">
+    <thead style="text-align: center;">
       <tr>
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Email</th>
         <th >Action</th>
       </tr>
     </thead>
-    <tbody cdkDropList
+    <tbody *ngIf="!no_data" style="text-align: center;"
+           cdkDropList
            (cdkDropListDropped)="onDrop($event)"
            [cdkDropListData]="posts">
        <tr cdkDrag
            cdkDragLockAxis="y"
-           *ngFor="let post of posts; index as i">
-          <td cdkDragHandle> {{i+1}}  </td>
+           *ngFor="let post of posts | paginate: { 
+             itemsPerPage: 10, 
+             currentPage: page,
+             totalItems:totalLength } ; index as i">
+          <td cdkDragHandle> {{i+1}} </td>
           <td> {{ post.firstname }} </td>
           <td> {{ post.lastname }} </td>
+          <td> {{ post.email }} </td>
           <td>
           <a  [routerLink]="['/post/', post.userId, 'view']" class="btn btn-success btnn">View</a> 
           <a  [routerLink]="['/post/', post.userId, 'edit']" class="btn btn-outline-success btnn">Edit</a>   
@@ -44,5 +63,31 @@
         </td>
       </tr>
     </tbody> 
-    </table>
+  </table>
+  <div class="no-data" *ngIf="no_data">No data found !</div>
+    
+    
+    <!-- <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end" >
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item "><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav> -->
+
+    <pagination-controls 
+     class="text-end my-pagination"
+     (pageChange)="page = $event"  *ngIf="!no_data"
+     ></pagination-controls>
+
+
+     <!-- <app-pagination *ngIf="posts.length != 0"
+                     (setPage)="setPage($event)"
+                     [perPage]="perPage"
+                     [totalPages]="totalPages"
+                     [currentPage]="currentPage">
+                                </app-pagination> -->
+    
  </div>

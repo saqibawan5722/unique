@@ -4,12 +4,12 @@
             <h1 style=" background-color: darkkhaki; border: 2px solid black; padding: 8px;">View Post</h1>
   
             <a routerLink="/post/index" class="btn btn-success" style="margin-left: 450px; margin-top: 50px;">Back</a>
-           <div style="border: 2px solid black; width: 500px; height: 300px; margin-left: 400px; background-color: darkkhaki">
+            <div style="border: 2px solid black; width: 500px; height: 300px; margin-left: 400px; background-color: darkkhaki">
             <div style="margin-top: 60px;">
-             <!-- <div>
+               <!-- <div>
                  <strong>ID:</strong>
-                <p>{{ post.id }}</p> 
-             </div> -->
+                <p>{{ post?.id }}</p> 
+             </div>   -->
            
              <div>
                 <h3><b>First Name:</b></h3>
@@ -20,6 +20,11 @@
                 <h3><b>Last Name:</b></h3>
                 <p style="font-size: 20px;">{{ post?.lastname }}</p>
              </div>
+
+             <div>
+               <h3><b>Email:</b></h3>
+               <p style="font-size: 20px;">{{ post?.email }}</p>
+            </div>
             </div>
            </div>
         </div>

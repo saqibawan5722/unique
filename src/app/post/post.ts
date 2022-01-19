@@ -3,4 +3,5 @@ export interface Post {
     userId: number;
     firstname: string;
     lastname: string;
+    email:string;
 }

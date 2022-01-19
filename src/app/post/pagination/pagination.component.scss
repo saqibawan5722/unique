@@ -1,0 +1,61 @@
+.up-pagination {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 0;
+    width: max-content;
+
+    li {
+        display: inline-block;
+
+        a {
+            display: block;
+            border: 1px solid #ddd;
+            padding: 16px 16px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            color: #7DC0E3;
+        }
+
+        .next {
+            width: 70px;
+        }
+
+        &:hover {
+            a {
+                cursor: pointer;
+                color: #fff;
+                background-color: #7DC0E3;
+                border: 1px solid #7DC0E3;
+                font-weight: bold;
+
+
+            }
+
+            a.disabled {
+                background-color: #ddd;
+                border: 1px solid #ddd;
+                color: grey;
+                cursor: not-allowed;
+                font-weight: bold;
+            }
+        }
+
+        a.disabled {
+            color: #0000005c;
+            cursor: not-allowed;
+            background-color: #fff;
+            font-weight: bold;
+        }
+    }
+
+    li.active {
+        a {
+            color: #fff;
+            cursor: pointer;
+            background-color: #7DC0E3;
+            border: 1px solid #7DC0E3;
+            font-weight: bold;
+        }
+    }
+}

@@ -13,7 +13,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { ProfileComponent } from './profile/profile.component';
 
-import { DragDropModule } from '@angular/cdk/drag-drop'
+//  for drag and drop
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+// for pagination
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from './pagination/pagination.component';
+
+
 
 
 
@@ -26,7 +33,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     LoginComponent,
     ForgetComponent,
     ChangepasswordComponent,
-    ProfileComponent
+    ProfileComponent,
+    PaginationComponent
     
   ],
   imports: [
@@ -34,7 +42,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     PostRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    NgxPaginationModule
    
 ],
 //  providers:[
