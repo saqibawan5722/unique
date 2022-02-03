@@ -5,6 +5,8 @@ import { MyserviceService } from '../myservice.service';
 import { Post } from '../post';
 import { CdkDragDrop , moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { PaginationService } from 'ngx-pagination';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -17,21 +19,29 @@ export class IndexComponent implements OnInit {
    public maxSize: number = 3;
    page : number = 1;
   // public directionLinks: boolean = true;
-  perPage : number = 5;
+  perPage : number = 3;
   totalPages: number;
-  currentPage:any = 1;
   pages: any;
   count:any;
   index: any = 1;
   posts = [];
-  post: Post;
+  array: Post;
   no_data = false;
   
   firstname:any;
-
-  constructor(private postService:MyserviceService, private service:AuthserviceService ) { }
+  form: FormGroup;
+  constructor(private postService:MyserviceService, private service:AuthserviceService, private router: Router ) { }
 
   ngOnInit(): void {
+
+    this.form = new FormGroup({
+      firstname: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', Validators.required),
+      // id: new FormControl('',Validators.required),
+      email: new FormControl('', [Validators.required]),
+    });
+
+
   
     this.postService.getAll().subscribe( 
 
@@ -43,6 +53,22 @@ export class IndexComponent implements OnInit {
          this.onCheck();
     });  
 
+    
+  }
+
+  get f(){
+    return this.form.controls;
+  }
+    
+  onSubmit(){
+   // console.log(this.form.value);
+    this.postService.create(this.form.value).subscribe(res => {
+         console.log('Post created successfully!');
+         this.router.navigateByUrl('post/index');
+         this.ngOnInit();
+        
+    })
+    
   }
 
   onCheck(){
@@ -69,8 +95,8 @@ export class IndexComponent implements OnInit {
   deletePost(id) {
     this.postService.delete(id)
      if (confirm("You Want Delete This?")){
-    console.log(id);  
-    this.ngOnInit() 
+            console.log(id);  
+            this.ngOnInit() 
 }
 }
 
@@ -110,5 +136,6 @@ export class IndexComponent implements OnInit {
       })
     }
   }
+  
   
 }

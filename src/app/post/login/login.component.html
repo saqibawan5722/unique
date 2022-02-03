@@ -1,15 +1,27 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki;">
+            <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki; box-sizing: border-box;">
                 <div class="container-fluid">
                   <h3 class="navbar-brand">Wellcome</h3>
-                  <div>        
+                  
+                  <div style="display: flex;">        
+                    <ul style="display: grid; grid-template-columns: 100px 100px; 
+                               list-style-type: none; margin-top: 20px;">
+                      <li><a href="">English</a></li>
+                      <li><a href="">Hindi</a></li>
                      
+                    </ul>
                       <button class="btn btn-success" type="submit">Sign In</button>   
                   </div>
                 </div>
               </nav> 
+
+              <!-- <ul style="display: grid; grid-template-columns: 50px 50px 50px; list-style-type: none;">
+                <li>wn</li>
+                <li>wn</li>
+                <li>wn</li>
+              </ul> -->
               <div *ngIf="error" class="alert alert-danger" style="width: 400px; text-align: center; margin-left: 450px;" role="alert">
                 <b>Error:</b> {{error}}
               </div>
@@ -19,7 +31,8 @@
               
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" style="border:2px solid darkred;" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+                  <input type="email" class="form-control" style="border:2px solid darkred;" id="exampleInputEmail1" 
+                     aria-describedby="emailHelp" formControlName="email" >
                   <div *ngIf="Form.controls['email'].invalid && Form.controls['email'].touched">
                     <span class="name" style="margin-left: 80px;">Enter email</span>                
                     </div>

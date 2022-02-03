@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col">
         <h1 style=" background-color: darkkhaki; border: 2px solid black; padding: 8px; text-align: center;">Create New User</h1>
@@ -8,9 +8,9 @@
    <div class="col">
     <a href="#" routerLink="/post/index" class="btn btn-success" style="margin-left: 400px;">Back</a>
  
-    <form [formGroup]="form" (ngSubmit)="submit()" style="width: 400px; margin-left: 30px;">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 400px; margin-left: 30px;">
 
-        <!-- <div class="form-group">
+         <div class="form-group">
             <label class="form-label" for="title">ID</label>
             <input 
                 formControlName="id"
@@ -21,7 +21,7 @@
             <div *ngIf="f.id.touched && f.id.invalid" class="alert alert-danger">
                 <div *ngIf="f.id.errors.required">Id is required.</div>
             </div>
-        </div>   -->
+        </div>   
    
         <div class="mb-3">
             <label class="form-label" for="title" >First Name:</label>
@@ -68,4 +68,4 @@
     </div>
     </div>
     </div>  
-</div>
+</div> -->

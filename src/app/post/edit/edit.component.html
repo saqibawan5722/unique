@@ -16,7 +16,7 @@
                   formControlName="firstname"
                   id="title" 
                   type="text" 
-                  [(ngModel)]="post.firstname"
+                  [(ngModel)]="array.firstname"
                   class="form-control"
                   style="border:2px solid darkred;">
                  <div *ngIf="f.firstname.touched && f.firstname.invalid" class="alert alert-danger">
@@ -30,7 +30,7 @@
                       formControlName="lastname"
                       id="body" 
                       type="text" 
-                      [(ngModel)]="post.lastname"
+                      [(ngModel)]="array.lastname"
                       class="form-control"
                       style="border:2px solid darkred;">
 
@@ -45,7 +45,7 @@
                        formControlName="email"
                        id="email" 
                        type="text" 
-                       [(ngModel)]="post.email"
+                       [(ngModel)]="array.email"
                        class="form-control"
                        style="border:2px solid darkred;">
  

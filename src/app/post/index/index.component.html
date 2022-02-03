@@ -1,3 +1,82 @@
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 400px; margin-left: 30px;">
+
+          <!-- <div class="form-group">
+             <label class="form-label" for="title">ID</label>
+             <input 
+                 formControlName="id"
+                 id="id" 
+                 type="number" 
+                 class="form-control"
+                 style="border:2px solid darkred;">
+             <div *ngIf="f.id.touched && f.id.invalid" class="alert alert-danger">
+                 <div *ngIf="f.id.errors.required">Id is required.</div>
+             </div>
+         </div>    -->
+    
+         <div class="mb-3">
+             <label class="form-label" for="title" >First Name:</label>
+             <input 
+                 formControlName="firstname"
+                 id="title" 
+                 type="text" 
+                 class="form-control"
+                 style="border:2px solid darkred;">
+             <div *ngIf="f.firstname.touched && f.firstname.invalid" class="alert alert-success">
+                 <div *ngIf="f.firstname.errors.required">firstname is required.</div>
+             </div>
+         </div>
+   
+         <div class="mb-3">
+             <label class="form-label" for="body">Last Name:</label>
+             <input 
+                 formControlName="lastname"
+                 id="body" 
+                 type="text" 
+                 class="form-control"
+                 style="border:2px solid darkred;">
+             <div *ngIf="f.lastname.touched && f.lastname.invalid" class="alert alert-success">
+                 <div *ngIf="f.lastname.errors.required">lastname is required.</div>
+             </div>
+         </div>
+ 
+         <div class="mb-3">
+             <label class="form-label" for="body">Email:</label>
+             <input 
+                 formControlName="email"
+                 id="email" 
+                 type="text" 
+                 class="form-control"
+                 style="border:2px solid darkred;">
+             <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-success">
+                 <div *ngIf="f.email.errors.required">Email is required.</div>
+             </div>
+         </div>
+
+         <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
+        </div>
+     </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 <div class="container">
     <h1>Angular CRUD Example</h1>
     <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki;">
@@ -6,29 +85,47 @@
           <div class="dropdown">
               <a href="" data-bs-toggle="dropdown" style="padding-right: 10px;"> <i class="fas fa-user-circle" style="font-size: 40px; color: aliceblue;"></i></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><button routerLink="/post/index" class="dropdown-item" type="button">Dashboard</button></li>
+              <li><button routerLink="/post/index" class="dropdown-item" type="button">
+                <i class="far fa-address-card"></i> 
+                Dashboard</button></li>
               <!-- <li><a routerLink="/post/profile"> <i class="fa fa-eye"></i> View Profile </a></li> -->
-              <li><button routerLink="/post/profile" class="dropdown-item" type="button">View Profile</button></li>
-              <li><button routerLink="/post/profile" class="dropdown-item" [queryParams]="{EditMode:true}" type="button">Edit Profile</button></li>
-              <li><button routerLink="/post/changepassword" class="dropdown-item" type="button">Change Password</button></li>
-             <li><button class="dropdown-item" type="button" (click)="sginout()">Sign Out</button></li> 
+              <li><button routerLink="/post/profile" class="dropdown-item" type="button">
+                <i class="fas fa-users"></i>
+                View Profile</button></li>
+              <li><button routerLink="/post/profile" class="dropdown-item" [queryParams]="{EditMode:true}" type="button">
+                <i class="fas fa-user-edit"></i>
+                Edit Profile</button></li>
+              <li><button routerLink="/post/changepassword" class="dropdown-item" type="button">
+                <i class="fas fa-unlock-alt"></i>
+                Change Password</button></li>
+             <li><button class="dropdown-item" type="button" (click)="sginout()">
+              <i class="fas fa-sign-out-alt"></i>
+              Sign Out</button></li> 
             </ul>
           </div>
         </div>
       </nav> 
   
+
+
       <!-- for search  and create button -->
+      
      <div class="search">
 
         <a class="search1">
-              <label for="class" style="font-size: 22px; color: black;">Search Module: </label>
+              <!-- <label for="class" style="font-size: 22px; color: black;">Search Module:  </label> -->
               <input id="class" type="search" placeholder="Search..." 
                      [(ngModel)]="firstname" (ngModelChange)="search()" style="outline: none;">
               <!-- <button type="submit"><i class="fa fa-search"> </i></button> -->
         </a>
 
-              <a href="#" routerLink="/post/create" class="btn btn-success">Create New User</a>
+              <!-- <a href="#" routerLink="/post/create" class="btn btn-success"> Create New User</a> -->
+              
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Create New User
+              </button>
      </div>
+     
     
 
     
@@ -48,18 +145,18 @@
            [cdkDropListData]="posts">
        <tr cdkDrag
            cdkDragLockAxis="y"
-           *ngFor="let post of posts | paginate: { 
-             itemsPerPage: 10, 
+           *ngFor="let array of posts | paginate: { 
+             itemsPerPage: perPage, 
              currentPage: page,
-             totalItems:totalLength } ; index as i">
+             totalItems:totalLength } ; let i = index">
           <td cdkDragHandle> {{i+1}} </td>
-          <td> {{ post.firstname }} </td>
-          <td> {{ post.lastname }} </td>
-          <td> {{ post.email }} </td>
+          <td> {{ array.firstname }} </td>
+          <td> {{ array.lastname }} </td>
+          <td> {{ array.email }} </td>
           <td>
-          <a  [routerLink]="['/post/', post.userId, 'view']" class="btn btn-success btnn">View</a> 
-          <a  [routerLink]="['/post/', post.userId, 'edit']" class="btn btn-outline-success btnn">Edit</a>   
-         <button type="button" (click)="deletePost(post.userId)" class="btn btn-success btnn">Delete</button> 
+          <a  [routerLink]="['/post/', array.userId, 'view']" class="btn btn-success btnn">View</a> 
+          <a  [routerLink]="['/post/', array.userId, 'edit']" class="btn btn-outline-success btnn">Edit</a>   
+         <button type="button" (click)="deletePost(array.userId)" class="btn btn-success btnn">Delete</button> 
         </td>
       </tr>
     </tbody> 

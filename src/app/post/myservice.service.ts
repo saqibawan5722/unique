@@ -76,13 +76,13 @@ export class MyserviceService {
   } 
   
 
-  find(userId) {
-    return this.http.get<Post>('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + userId + '.json')
+  find(id) {
+    return this.http.get<Post>('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + id + '.json')
    
   }
    
-  update(userId, post): Observable<Post> {
-    return this.http.put<Post>('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + userId + '.json', post , this.httpOptions)
+  update(id, post): Observable<Post> {
+    return this.http.put<Post>('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + id + '.json', post , this.httpOptions)
     
   }
    

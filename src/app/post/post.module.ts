@@ -21,6 +21,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from './pagination/pagination.component';
 
 
+// for Ngxs state management
+import { NgxsModule } from '@ngxs/store';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+
 
 
 
@@ -43,7 +48,15 @@ import { PaginationComponent } from './pagination/pagination.component';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
+
+    
+    // for ngxs state management
+    NgxsModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot()
+
    
 ],
 //  providers:[

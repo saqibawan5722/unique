@@ -19,8 +19,8 @@ export class CreateComponent implements OnInit {
     this.form = new FormGroup({
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', Validators.required),
-      //id: new FormControl('',Validators.required)
-      email: new FormControl('', Validators.required),
+      // id: new FormControl('',Validators.required),
+      email: new FormControl('', [Validators.required]),
     });
   }
    
@@ -28,7 +28,7 @@ export class CreateComponent implements OnInit {
     return this.form.controls;
   }
     
-  submit(){
+  onSubmit(){
    // console.log(this.form.value);
     this.postService.create(this.form.value).subscribe(res => {
          console.log('Post created successfully!');
