@@ -65,10 +65,11 @@ export class IndexComponent implements OnInit {
     this.postService.create(this.form.value).subscribe(res => {
          console.log('Post created successfully!');
          this.router.navigateByUrl('post/index');
+        //  $('#exampleModal').trigger('click')
          this.ngOnInit();
         
     })
-    
+
   }
 
   onCheck(){

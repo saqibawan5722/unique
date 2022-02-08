@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -64,7 +64,7 @@
 
          <div class="modal-footer">
           <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
+          <button class="btn btn-success" type="submit" [disabled]="!form.valid" data-bs-dismiss="modal">Submit</button>
         </div>
      </form>
       </div>

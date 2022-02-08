@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams }  from '@angular/common/http';
-import {  Observable, throwError } from 'rxjs';
+import {  BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Post } from './post';
 import { catchError, exhaustMap, map, take } from 'rxjs/operators';
 import { AuthserviceService } from './authservice.service';
@@ -13,7 +13,8 @@ export class MyserviceService {
 
   apiURL = 'https://datapro-d01a4-default-rtdb.firebaseio.com/posts.json';
 
-    
+  
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

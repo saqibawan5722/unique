@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthserviceService } from '../authservice.service';
 import { ErrorhandlinService } from '../errorhandlin.service';
+import { MyserviceService } from '../myservice.service';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,24 @@ export class LoginComponent implements OnInit {
 
   loginMode : boolean = true;
   error;
+  switchLang;
+  browserLang;
  // errMsgs = this.err.errormessage
   Form:FormGroup;
 
+
+
   constructor(private router:Router, private fb:FormBuilder ,
-               private service:AuthserviceService, private err:ErrorhandlinService) { }
+               private service:AuthserviceService, private err:ErrorhandlinService,
+               public translate: TranslateService  ) { 
+
+
+                 translate.addLangs(['en' , 'gn']);
+                 translate.setDefaultLang('en');
+
+               }
+
+  
 
   ngOnInit(): void {
     this.Form = this.fb.group({
@@ -96,6 +111,15 @@ export class LoginComponent implements OnInit {
     this.loginMode = !this.loginMode;
     
   }
+
+  
+
+  onSelectedLang(lang){
+     console.log(lang);
+     this.translate.use(lang)
+    
+  }
+
 
   
 

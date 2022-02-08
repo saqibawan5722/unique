@@ -15,6 +15,8 @@ export class AuthserviceService {
   api_key = 'AIzaSyCKiehybCXEE1fS3bGkX0FVLsUHYVi4ul0';
 
   User = new BehaviorSubject<UserdatastoreModule>(null)
+
+
   // user = new Subject<UserdatastoreModule>()
  
   private tokenExpirationTimer : any;   // jab ham khud sginout kar day tab auto sgin out walaa process khatam hu jeay
@@ -159,4 +161,7 @@ export class AuthserviceService {
        
     )
    }
+
+
+
 }
