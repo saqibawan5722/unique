@@ -11,10 +11,12 @@ export class ErrorhandlinService {
 
 
   errorHandler(err: HttpErrorResponse){
-    if(!err.error || !err.error.error){  
+    if(!err.error || !err.error.error){ 
+      // jab net etc na hu yaa error koi bhi na hu to unknown erroe show hu ga 
      return throwError(this.errormessage['UNKNOWN'])
     }else
     { 
+      // throwError rxjx kaa operater he
      return throwError(this.errormessage[err.error.error.message])
     }
   }

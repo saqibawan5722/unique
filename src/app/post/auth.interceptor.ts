@@ -22,13 +22,14 @@ export class AuthInterceptor implements HttpInterceptor {
     exhaustMap(user=>{
       if(!user){
         return next.handle(request);
-      }
+      };
+      const token = 'RXPd0uUPhmUbLaLCTHHjcplj29s2'
       const modifiedReq = request.clone({
-        params : new HttpParams().set('auth', user.token)
+        //  params : new HttpParams().set('auth', user.token)
+         setHeaders : { api_key : token}
       })
       return next.handle(modifiedReq);
-    })
-    
+    }) 
     )
   }
 }

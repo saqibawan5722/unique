@@ -5,7 +5,9 @@ import { BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Authresponse } from './authresponse';
 import { ErrorhandlinService } from './errorhandlin.service';
-import { UserdatastoreModule } from './userdatastore/userdatastore.module';
+import { Userstore } from './userstore';
+
+
 
 
 @Injectable({
@@ -14,7 +16,7 @@ import { UserdatastoreModule } from './userdatastore/userdatastore.module';
 export class AuthserviceService {
   api_key = 'AIzaSyCKiehybCXEE1fS3bGkX0FVLsUHYVi4ul0';
 
-  User = new BehaviorSubject<UserdatastoreModule>(null)
+  User = new BehaviorSubject<Userstore>(null)
 
 
   // user = new Subject<UserdatastoreModule>()
@@ -24,22 +26,22 @@ export class AuthserviceService {
   constructor( private http:HttpClient, private errorservice:ErrorhandlinService, private router:Router) {}
 
   signUp(email , password){
-    return this.http.post<Authresponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+this.api_key,{
+    return this.http.post<Authresponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.api_key}`,{
       email:email,
       password:password,
       returnSecureToken:true
-     }).pipe(
+      }).pipe(   // rxjx library kay operater jab bhi use karty han to pipe use karty han
        catchError(err=>{
       return this.errorservice.errorHandler(err)
      }),
        tap(res=>{
-        this.authenticatedUser(res.email, res.idToken , res.localId, +res.expiresIn)
+        this.authenticatedUser(res.email, res.idToken , res.localId, +res.expiresIn , res.roles)
        })
      )
   }
 
 
-  signIn(email , password){
+  login(email , password){
     return this.http.post<Authresponse>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+this.api_key,{
       email:email,
       password:password,
@@ -47,9 +49,10 @@ export class AuthserviceService {
      }).pipe(
       catchError(err=>{
      return this.errorservice.errorHandler(err)
-    }),  // tap is use for store authenticated user data
+    }),  // tap is use for store authenticated user data ya side effect kam karta he , ,
+        //  user kaa dataa hamay signin ya sinup karny par milay gaa to yaa as a console use kar rahy , , dataa store karta he
         tap(res=>{
-            this.authenticatedUser(res.email, res.idToken, res.localId, +res.expiresIn)
+            this.authenticatedUser(res.email, res.idToken, res.localId, +res.expiresIn , res.roles )
           })
     )
   }
@@ -81,12 +84,12 @@ export class AuthserviceService {
    autosginIn(){
 
       const userdata = JSON.parse(localStorage.getItem('UserData'));
-      console.log(userdata)  
+        console.log(userdata)  
           if(!userdata){
                 return;
           }
-        const logedInUser = new UserdatastoreModule(userdata.email, userdata.id, userdata._token , new Date(userdata._tokenExpirationDate))
-        console.log(logedInUser)  // use for change date method
+        const logedInUser = new Userstore(userdata.email, userdata.id, userdata._token , new Date(userdata._tokenExpirationDate) , userdata.roles)
+          console.log(logedInUser)  // use for change date method
           if(logedInUser.token){
               this.User.next(logedInUser);
 
@@ -97,18 +100,21 @@ export class AuthserviceService {
           }
 
    
-  // this is use for store authenticated user data
 
-  authenticatedUser( email , id , token , expiresIn){
+  // ya user jo data enter kray gaa us ko save kartaa he
+  // and emain , id , token , expiresIn ya userdata module main huta
+  authenticatedUser( email , id , token , expiresIn  , roles){
 
        const expirationDate = new Date(new Date().getTime() +expiresIn*1000)
-       const user = new UserdatastoreModule( email , id , token , expirationDate)
+       const user = new Userstore( email , id , token , expirationDate , roles )
        this.User.next(user); // storing data in user subject
       // console.log('user =>', user);
 
         this.autosginOut(expiresIn*1000)  // ik second main 1000 mili second huty
 
        localStorage.setItem('UserData', JSON.stringify(user));  // storing data in local storage
+
+      //  this.getuserData(token);
   }
 
 
@@ -130,12 +136,20 @@ export class AuthserviceService {
     )
   }
 
+  getuserData(token){
+    this.http.post<any>('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key='+this.api_key,{
+      idToken:token,
+    }).subscribe(res=>{
+      console.log(res)
+    })
+  }
 
-  changepassword(userdatastore){
+
+  changepassword(user){
     return this.http.post<any>('https://identitytoolkit.googleapis.com/v1/accounts:update?key='+this.api_key,{
  
-       idToken:userdatastore.token,
-       password:userdatastore.password,
+       idToken:user.token,
+       password:user.password,
        returnSecureToken:true
      })
      .pipe(

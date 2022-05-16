@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostModule } from './post/post.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClipboardModule } from 'ngx-clipboard';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,6 +23,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PostModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ClipboardModule,
+    FormsModule,
+    ReactiveFormsModule
+  
+
    
   ],
   providers: [],

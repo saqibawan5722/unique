@@ -14,12 +14,11 @@ export class ViewComponent implements OnInit {
   post?: Post;
    
   constructor(
-    public postService: MyserviceService,
-    private route: ActivatedRoute,
-    private router: Router
+    public postService: MyserviceService, private route: ActivatedRoute, private router: Router
    ) { }
   
   ngOnInit(): void {
+    //  active route ka param
     this.id = this.route.snapshot.params['postId'];
       
     this.postService.find(this.id).subscribe((data: Post)=>{

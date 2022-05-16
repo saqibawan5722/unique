@@ -78,12 +78,12 @@
 
 
 <div class="container">
-    <h1>Angular CRUD Example</h1>
+    <h1 appDirective>Angular CRUD Example</h1>
     <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki;">
         <div class="container-fluid">
           <h3 class="navbar-brand">Wellcome</h3>
           <div class="dropdown">
-              <a href="" data-bs-toggle="dropdown" style="padding-right: 10px;"> <i class="fas fa-user-circle" style="font-size: 40px; color: aliceblue;"></i></a>
+            <a href="" data-bs-toggle="dropdown" style="padding-right: 10px;"> <i class="fas fa-user-circle" style="font-size: 40px; color: aliceblue;"></i></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <li><button routerLink="/post/index" class="dropdown-item" type="button">
                 <i class="far fa-address-card"></i> 
@@ -155,7 +155,7 @@
           <td> {{ array.email }} </td>
           <td>
           <a  [routerLink]="['/post/', array.userId, 'view']" class="btn btn-success btnn">View</a> 
-          <a  [routerLink]="['/post/', array.userId, 'edit']" class="btn btn-outline-success btnn">Edit</a>   
+          <a  [routerLink]="['/post/', array.userId, 'edit']" class="btn btn-outline-success btnn">Edit</a>    
          <button type="button" (click)="deletePost(array.userId)" class="btn btn-success btnn">Delete</button> 
         </td>
       </tr>

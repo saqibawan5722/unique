@@ -1,15 +1,15 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
+  <div class="row">
+    <div class="col">
             <nav class="navbar navbar-expand-lg" style="background-color: darkkhaki; box-sizing: border-box;">
                 <div class="container-fluid">
                   <h3 class="navbar-brand">{{ 'text' | translate }}</h3>
                   
                   <div style="display: flex;">        
-                    <ul style="display: grid; grid-template-columns: 80px 100px; 
+                    <ul style="display: grid; grid-template-columns: 60px 100px; 
                                list-style-type: none; margin-top: 20px;">
-                      <li><a  style="cursor: pointer;"  (click)="onSelectedLang('en')">English</a></li>
-                      <li><a  style="cursor: pointer;"  (click)="onSelectedLang('gn')">German</a></li>
+                      <li><a class="myclass"  style="cursor: pointer;"  (click)="onSelectedLang('en')">English</a></li>
+                      <li><a  style="cursor: pointer; margin-left: 10px;"  (click)="onSelectedLang('gn')">German</a></li>
                      
                     </ul>
                       <button class="btn btn-success btnn" type="submit">{{ 'text1' | translate }}</button>   
@@ -21,11 +21,12 @@
 
               
               
-              
+              <!--  Use For error -->
               <div *ngIf="error" class="alert alert-danger" style="width: 400px; text-align: center; margin-left: 450px;" role="alert">
                 <b>Error:</b> {{error}}
-              </div>
+              </div> 
 
+              
               
               <form [formGroup]="Form" (ngSubmit)="onSubmit()">
               <div class="saqi">
@@ -61,10 +62,11 @@
                 (click)="logMode()">{{loginMode? 'Create One' : ': Sgin In' }}</span>
             </div>
            
-              </div>
-    
-        
+          </div>     
+        </div>
+      </form>
     </div>
-</form>
+  </div>
 </div>
+
 

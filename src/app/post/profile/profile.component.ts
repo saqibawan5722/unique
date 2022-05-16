@@ -42,9 +42,10 @@ export class ProfileComponent implements OnInit {
 
 
   onSubmit(){
-    //console.log(this.Form.value);
-    //  let udata = console.log({token: this.token , ...this.Form.value}) // is main token ko combine kiaa he
+    console.log(this.Form.value);
+    // let udata = console.log({token: this.token , ...this.Form.value}) // is main token ko combine kiaa he
      let udata = {token: this.mytoken , ...this.Form.value};
+     console.log(udata)
     this.service.updateProfile(udata).subscribe(
       
       res=>{

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { AuthserviceService } from '../authservice.service';
 import { MyserviceService } from '../myservice.service';
 import { Post } from '../post';
@@ -7,6 +7,7 @@ import { CdkDragDrop , moveItemInArray, transferArrayItem } from '@angular/cdk/d
 import { PaginationService } from 'ngx-pagination';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+declare var $ : any;
 
 @Component({
   selector: 'app-index',
@@ -15,22 +16,24 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
+  
   totalLength:any;
    public maxSize: number = 3;
    page : number = 1;
   // public directionLinks: boolean = true;
-  perPage : number = 3;
+  perPage : number = 10;
   totalPages: number;
   pages: any;
   count:any;
   index: any = 1;
   posts = [];
-  array: Post;
+  
   no_data = false;
   
   firstname:any;
   form: FormGroup;
-  constructor(private postService:MyserviceService, private service:AuthserviceService, private router: Router ) { }
+  constructor(private postService:MyserviceService, private service:AuthserviceService, private router: Router,
+              public render: Renderer2, public el:ElementRef ) { }
 
   ngOnInit(): void {
 
@@ -137,6 +140,14 @@ export class IndexComponent implements OnInit {
       })
     }
   }
+
+
+  // this is use for HostListener directive
+
+  // @HostListener('click') myclick(){
+
+  //   this.render.setStyle(this.el.nativeElement, 'color', 'red')
+  //  }
   
   
 }

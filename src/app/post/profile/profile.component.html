@@ -3,7 +3,8 @@
 <form [formGroup]="Form" (ngSubmit)="onSubmit()">
     <div class="row" style="margin-bottom: 20px;">
         <h3 style="width: 110px;">Profile</h3>
-        <button routerLink="/post/profile" [queryParams]="{Editmode:true}" class="btn btn-success" type="button" style="width: 130px; margin-left: 120px;">
+        <button routerLink="/post/profile" [queryParams]="{Editmode:true}" class="btn btn-success" type="button" 
+                style="width: 130px; margin-left: 120px;">
             Edit profile</button>
     </div>
      <hr>
@@ -34,7 +35,7 @@
     </div>
 
     <div class="btn-row" *ngIf="Editmode">
-        <button type="button" class="btn btn-success my">Submit</button>
+        <button type="submit" class="btn btn-success my">Submit</button>
          <button type="button" class="btn btn-success my" (click)="ondiscard()">Discard</button>
     </div>
 

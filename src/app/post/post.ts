@@ -4,4 +4,9 @@ export interface Post {
     firstname: string;
     lastname: string;
     email:string;
+    admin : "admin";
+    manager : "manager";
+    user : "user";
 }
+
+

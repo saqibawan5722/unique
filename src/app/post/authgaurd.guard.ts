@@ -15,18 +15,26 @@ export class AuthgaurdGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
    // return true;
 
-     return this.service.User.pipe(
-       take(1),
-       map(res =>{
-        // return res? true : false;  // ya jab use karty han to page bilkal empty nazar ataa he
+    //  return this.service.User.pipe(
+    //    take(1),
+    //    map(res =>{
+    //     //  return res? true : false;  // ya jab use karty han to page bilkal empty nazar ataa he
 
-        if(res){
-          return true
-        }
+    //     if(res){
+    //       return true
+    //     }
 
-        return this.router.createUrlTree(['login'])
-       })
-     ) 
+    //     return this.router.createUrlTree(['login'])
+    //    })
+    //  ) 
+
+    var deltaAdmin = JSON.parse(localStorage.getItem('UserData'))
+    if (deltaAdmin) {
+      return true;
+    }else{
+      this.router.navigate(['login']);
+      return false;
+    }
   }
   
 }

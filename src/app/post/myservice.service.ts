@@ -15,10 +15,7 @@ export class MyserviceService {
 
   
   
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
   Post=[];
 
@@ -31,10 +28,9 @@ export class MyserviceService {
   //  (take(1),
   //   exhaustMap(user=>{
   //     return this.http.get<Post>(this.apiURL,{
-  //       params : new HttpParams().set('auth',user.token)
+  //       params : new HttpParams().set('auth', user.token)
   //     });
-  //   }
-  //   ),
+  //   }),
   //   map(resData=>{
   //     //console.log(resData);
   //    const userArray = [];
@@ -71,7 +67,7 @@ export class MyserviceService {
 
 
 
-  create(post) {
+  create(post) : Observable<Post> {
     return this.http.post<Post>(this.apiURL , post, this.httpOptions)
     
   } 
@@ -83,12 +79,12 @@ export class MyserviceService {
   }
    
   update(id, post): Observable<Post> {
-    return this.http.put<Post>('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + id + '.json', post , this.httpOptions)
+    return this.http.patch<Post>('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + id + '.json', post , this.httpOptions)
     
   }
    
-   delete(userId){
-     return this.http.delete('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + userId+ '.json', this.httpOptions)
+   delete(id:number){
+     return this.http.delete('https://datapro-d01a4-default-rtdb.firebaseio.com/posts/'  + id+ '.json', this.httpOptions)
      .subscribe((response)=>{   
         this.getAll() 
        }

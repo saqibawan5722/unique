@@ -16,7 +16,15 @@ export class EditComponent implements OnInit {
   form: FormGroup;
   
   constructor(
-    public postService: MyserviceService,private route: ActivatedRoute,private router: Router) { }
+    public postService: MyserviceService,private route: ActivatedRoute,private router: Router) {
+
+      this.form = new FormGroup({
+        firstname: new FormControl('', [Validators.required]),
+        lastname: new FormControl('', Validators.required),
+        email: new FormControl('', Validators.required)
+      });
+      
+     }
   
   ngOnInit(): void {
     
@@ -27,11 +35,6 @@ export class EditComponent implements OnInit {
       this.array = res;
     });
     
-    this.form = new FormGroup({
-      firstname: new FormControl('', [Validators.required]),
-      lastname: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required)
-    });
   }
    
   get f(){

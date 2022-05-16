@@ -14,9 +14,9 @@ import { MyserviceService } from '../myservice.service';
 export class LoginComponent implements OnInit {
 
   loginMode : boolean = true;
-  error;
-  switchLang;
-  browserLang;
+  error : any;
+  switchLang : any;
+  browserLang : any;
  // errMsgs = this.err.errormessage
   Form:FormGroup;
 
@@ -48,7 +48,9 @@ export class LoginComponent implements OnInit {
     const email = this.Form.value.email 
     const password = this.Form.value.password 
      if(this.loginMode){
-      this.service.signIn(email, password).subscribe(res=>{
+      this.service.login(email, password).subscribe(res=>{
+        
+        
         console.log(res)
         this.router.navigateByUrl('post/index')
      },
@@ -76,7 +78,8 @@ export class LoginComponent implements OnInit {
 
 
      else{
-      this.service.signUp(email, password).subscribe(res=>{
+      this.service.signUp(email, password).subscribe
+      (res=>{
         console.log(res)
      },
      err=>{

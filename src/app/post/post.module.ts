@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostRoutingModule } from './post-routing.module';
 import { CreateComponent } from './create/create.component';
@@ -31,6 +31,10 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import {HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {MultiTranslateHttpLoader} from "ngx-translate-multi-http-loader";
+import { DirectiveDirective } from './directive.directive';
+import { AdminComponent } from './admin/admin.component';
+import { ManagerComponent } from './manager/manager.component';
+
 
 
 
@@ -46,7 +50,11 @@ import {MultiTranslateHttpLoader} from "ngx-translate-multi-http-loader";
     ForgetComponent,
     ChangepasswordComponent,
     ProfileComponent,
-    PaginationComponent
+    PaginationComponent,
+    DirectiveDirective,
+    AdminComponent,
+    ManagerComponent,
+    
     
   ],
   imports: [
@@ -81,17 +89,22 @@ import {MultiTranslateHttpLoader} from "ngx-translate-multi-http-loader";
 exports : [
   HttpClientModule,
   TranslateModule,
+  
 
-]
-//  providers:[
-//    {
-//      provide : HTTP_INTERCEPTORS,
-//      useClass : AuthInterceptor,
-//      multi : true
-//    }
-//  ]
+],
+
+  //  providers:[
+  //    {
+  //    provide : HTTP_INTERCEPTORS,
+  //    useClass : AuthInterceptor,
+  //     multi : true
+  //    }
+  //  ]
 })
-export class PostModule { }
+
+export class PostModule { 
+  
+ }
 
 export function HttpLoaderFactory(http: HttpClient) {
      return new MultiTranslateHttpLoader(http, [
